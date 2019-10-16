@@ -1,0 +1,16 @@
+@import "../../../styles/variables";
+.disabled {
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+}
+
+.mat-input-element {
+  &:disabled {
+    color: #000;
+  }
+}
+
+.primary {
+  background-color: $green-button-color;
+}

@@ -1,0 +1,96 @@
+<div class="login-page">
+  <div [@flip]="currentState" class="welcome-card">
+    <mat-card [ngClass]="{'rotate-content': currentState === 'final'}">
+      <mat-card-header class="welcome-card__header">
+        <button class="welcome-card__header--back-btn" mat-icon-button (click)="toggle()" *ngIf="currentState === 'final'">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <mat-card-title class="welcome-card__header--title">{{currentState === 'initial' ? 'Login' : 'Register'}}</mat-card-title>
+        <img class="welcome-card__header--logo" src="assets/img/real-estate.png">
+      </mat-card-header>
+<!--  Login form    -->
+      <mat-card-content class="welcome-card__content" *ngIf="currentState === 'initial'">
+        <span class="mat-error" *ngIf="loginForm.errors"> Username or password is incorrect. </span>
+        <span  class="mat-error" *ngIf="error">{{ error }}</span>
+        <form class="my-3" (ngSubmit)="authentication()" [formGroup]="loginForm">
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   type="text"
+                   placeholder="Email"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid}">
+          </mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password"
+                   [ngClass]="{'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid}">
+          </mat-form-field>
+          <button type="submit"
+                  mat-raised-button
+                  class="btn btn-green btn-signin m-3"
+                  [title]="loginForm.valid ? 'Login' : 'Please enter correct data'"
+                  [disabled]="!loginForm.valid">
+            Login
+          </button>
+          <button mat-raised-button
+                  class="btn btn-green btn-signin m-3"
+                  title="Register"
+                  (click)="toggle()">
+            Register
+          </button>
+        </form>
+      </mat-card-content>
+<!--  Register form    -->
+      <mat-card-content class="welcome-card__content" *ngIf="currentState === 'final'">
+        <span class="mat-error" *ngIf="loginForm.errors"> Username or password is incorrect. </span>
+        <span  class="mat-error" *ngIf="error">{{ error }}</span>
+        <form (ngSubmit)="authentication()" [formGroup]="registerForm">
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   type="email"
+                   placeholder="ID"
+                   formControlName="id"
+                   [ngClass]="{'is-invalid': (registerForm.get('id').touched || registerForm.get('id').dirty) && !registerForm.get('id').valid}">
+          </mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   type="text"
+                   placeholder="Name"
+                   formControlName="name"
+                   [ngClass]="{'is-invalid': (registerForm.get('name').touched || registerForm.get('name').dirty) && !registerForm.get('name').valid}">
+          </mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   type="email"
+                   placeholder="Email"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': (registerForm.get('email').touched || registerForm.get('email').dirty) && !registerForm.get('email').valid}">
+          </mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password"
+                   [ngClass]="{'is-invalid': (registerForm.get('password').touched || registerForm.get('password').dirty) && !registerForm.get('password').valid}">
+          </mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
+            <input matInput
+                   placeholder="Confirm password"
+                   type="password"
+                   formControlName="confirmPassword"
+                   [ngClass]="{'is-invalid': (registerForm.get('confirmPassword').touched || registerForm.get('confirmPassword').dirty) && !registerForm.get('confirmPassword').valid}">
+          </mat-form-field>
+          <button type="submit"
+                  mat-raised-button
+                  class="btn btn-green btn-signin"
+                  [title]="loginForm.valid ? 'Register' : 'Please enter correct data'"
+                  [disabled]="!registerForm.valid">
+            Register
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

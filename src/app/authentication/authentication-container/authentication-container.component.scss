@@ -1,0 +1,51 @@
+.login-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #ecebe7;
+  display: flex;
+  align-items: center;
+  .welcome-card {
+    width: 40%;
+    min-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+
+    &__header {
+      display: block;
+      &--back-btn {
+        position: absolute;
+        left: 1.6rem;
+        top: 2rem;
+      }
+      &--title {
+        font-size: 3.6rem;
+        color: #78b532;
+      }
+      &--logo {
+        height: 15rem;
+      }
+    }
+
+    &__content {
+      &--actions {
+        margin: 1rem;
+        padding: 0;
+        .btn-signin {
+          text-transform: uppercase;
+          background-color: #78b532;
+        }
+      }
+      &--form-field {
+        display: block;
+      }
+    }
+
+    .rotate-content {
+      transform: rotateY(180deg);
+    }
+  }
+}
